@@ -24,7 +24,7 @@ class AuthorsPage extends React.Component {
                         element.company.bs);
                 })
             })
-            .then ((response) => {
+            .then((response) => {
                 this.setState({
                     authorsData: response
                 })
@@ -33,13 +33,13 @@ class AuthorsPage extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container Site-content">
                 <h1 className='text-center mt-4'>Welcome to Authors Page</h1>
                 <div className="row">
                     <ul className="list-group col-8 offset-2 mt-5">
-                    {this.state.authorsData.map((user,index) => {
-                       return <ListItemForAuthors data={user}/>
-                    })}        
+                        {this.state.authorsData.map((user, index) => {
+                            return <ListItemForAuthors data={user} key={index} />
+                        })}
                     </ul>
                 </div>
 

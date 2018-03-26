@@ -24,4 +24,4 @@ const AboutPage = () => {
     )
 }
 
-export default AboutPage; 1
+export default AboutPage;

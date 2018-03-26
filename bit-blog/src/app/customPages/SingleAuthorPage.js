@@ -1,6 +1,6 @@
 import React from 'react';
 import { UserClass } from "../../entities/usersClass";
-import { fetchAuthors } from "../../services/fetchAuthors";
+import { fetchSingleAuthor } from "../../services/fetchSingleAuthor";
 
 // import {ListItemForAuthors} from "./support/ListItemForAuthors"
 
@@ -13,19 +13,17 @@ class SingleAuthorPage extends React.Component {
         }
     }
 
-    getAuthors(inputId) {
-        fetchAuthors()
-            .then((response) => {
-                return response.map((element) => {
-                    return new UserClass(element.id, element.name, element.username, element.email,
-                        element.phone, element.address.street, element.address.city, element.address.zipcode,
-                        element.address.geo.lat, element.address.geo.lng, element.company.name,
-                        element.company.catchPhrase);
-                })
-            })
-            .then((response) => {
+    getAuthors(authorId) {
+        fetchSingleAuthor(authorId)
+            .then((element) => {
+                console.log(element)
+                const author = new UserClass(element.id, element.name, element.username, element.email,
+                    element.phone, element.address.street, element.address.city, element.address.zipcode,
+                    element.address.geo.lat, element.address.geo.lng, element.company.name,
+                    element.company.catchPhrase);
+
                 this.setState({
-                    userData: response[inputId],
+                    userData: author
                 })
             })
 
@@ -66,7 +64,7 @@ class SingleAuthorPage extends React.Component {
                             </ul>
                         </div>
                     </div>
-                    <iframe className=" mb-5 p-2 col-6 offset-1" src={`https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2830.8684639325147!2d${this.state.userData.geoLng}!3d${this.state.userData.geoLat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2srs!4v1521911596367`} ></iframe>
+                    <iframe title="map" className=" mb-5 p-2 col-6 offset-1" src={`https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2830.8684639325147!2d${this.state.userData.geoLng}!3d${this.state.userData.geoLat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2srs!4v1521911596367`} ></iframe>
                 </div>
             </div>
         )
