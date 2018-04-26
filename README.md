@@ -1,0 +1,3 @@
+Download… Run “yarn install”… Run “yarn start”…
+
+Or go to: http://bit-blog.bitballoon.com/#/
